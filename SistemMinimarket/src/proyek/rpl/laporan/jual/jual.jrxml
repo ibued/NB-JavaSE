@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="350" pageHeight="550" columnWidth="310" leftMargin="20" rightMargin="20" topMargin="5" bottomMargin="5" uuid="047cc5fc-e0ba-46a4-8793-952440fe46a8">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT JUAL.ID_JUAL        AS JUAL_ID_JUAL,
+  JUAL.TANGGAL_JUAL        AS JUAL_TANGGAL_JUAL,
+  JUAL.ID_PELANGGAN        AS JUAL_ID_PELANGGAN,
+  JUAL.ID_KASIR            AS JUAL_ID_KASIR,
+  JUAL.TOTAL               AS JUAL_TOTAL,
+  JUAL.BAYAR               AS JUAL_BAYAR,
+  JUAL.KEMBALIAN           AS JUAL_KEMBALIAN,
+  JUAL_DETIL.ID_JUAL_DETIL AS JUAL_DETIL_ID_JUAL_DETIL,
+  JUAL_DETIL.ID_JUAL       AS JUAL_DETIL_ID_JUAL,
+  JUAL_DETIL.ID_BARANG     AS JUAL_DETIL_ID_BARANG,
+  JUAL_DETIL.JUMLAH        AS JUAL_DETIL_JUMLAH,
+  JUAL_DETIL.JUMLAH * BARANG.HARGA - BARANG.DISKON / 100 * BARANG.HARGA AS SUB_TOTAL,
+  KASIR.ID_KASIR           AS KASIR_ID_KASIR,
+  KASIR.NAMA_KASIR         AS KASIR_NAMA_KASIR,
+  KASIR.TELEPON            AS KASIR_TELEPON,
+  KASIR.USERNAME           AS KASIR_USERNAME,
+  KASIR.PASSWORD           AS KASIR_PASSWORD,
+  BARANG.ID_BARANG         AS BARANG_ID_BARANG,
+  BARANG.NAMA_BARANG       AS BARANG_NAMA_BARANG,
+  BARANG.HARGA             AS BARANG_HARGA,
+  BARANG.STOK              AS BARANG_STOK,
+  BARANG.ID_KATEGORI       AS BARANG_ID_KATEGORI,
+  BARANG.ID_SATUAN         AS BARANG_ID_SATUAN,
+  BARANG.DISKON            AS BARANG_DISKON,
+  BARANG.DISKON / 100 * BARANG.HARGA AS HASIL_DISKON, 
+  PELANGGAN.ID_PELANGGAN   AS PELANGGAN_ID_PELANGGAN,
+  PELANGGAN.NAMA_PELANGGAN AS PELANGGAN_NAMA_PELANGGAN,
+  PELANGGAN.JENIS_KELAMIN  AS PELANGGAN_JENIS_KELAMIN,
+  PELANGGAN.ALAMAT         AS PELANGGAN_ALAMAT,
+  PELANGGAN.NO_TELP        AS PELANGGAN_NO_TELP,
+  SATUAN.ID_SATUAN         AS SATUAN_ID_SATUAN,
+  SATUAN.NAMA_SATUAN       AS SATUAN_NAMA_SATUAN
+FROM IBUED_USER.JUAL JUAL
+INNER JOIN IBUED_USER.JUAL_DETIL JUAL_DETIL
+ON JUAL.ID_JUAL = JUAL_DETIL.ID_JUAL
+INNER JOIN IBUED_USER.KASIR KASIR
+ON JUAL.ID_KASIR = KASIR.ID_KASIR
+INNER JOIN IBUED_USER.PELANGGAN PELANGGAN
+ON JUAL.ID_PELANGGAN = PELANGGAN.ID_PELANGGAN
+INNER JOIN IBUED_USER.BARANG BARANG
+ON JUAL_DETIL.ID_BARANG = BARANG.ID_BARANG
+INNER JOIN IBUED_USER.SATUAN SATUAN
+ON BARANG.ID_SATUAN = SATUAN.ID_SATUAN
+ORDER BY JUAL_ID_JUAL DESC]]>
+	</queryString>
+	<field name="JUAL_ID_JUAL" class="java.lang.String"/>
+	<field name="JUAL_TANGGAL_JUAL" class="java.lang.String"/>
+	<field name="JUAL_ID_PELANGGAN" class="java.lang.String"/>
+	<field name="JUAL_ID_KASIR" class="java.lang.String"/>
+	<field name="JUAL_TOTAL" class="java.lang.String"/>
+	<field name="JUAL_BAYAR" class="java.lang.String"/>
+	<field name="JUAL_KEMBALIAN" class="java.lang.String"/>
+	<field name="JUAL_DETIL_ID_JUAL_DETIL" class="java.lang.String"/>
+	<field name="JUAL_DETIL_ID_JUAL" class="java.lang.String"/>
+	<field name="JUAL_DETIL_ID_BARANG" class="java.lang.String"/>
+	<field name="JUAL_DETIL_JUMLAH" class="java.math.BigDecimal"/>
+	<field name="SUB_TOTAL" class="java.math.BigDecimal"/>
+	<field name="KASIR_ID_KASIR" class="java.lang.String"/>
+	<field name="KASIR_NAMA_KASIR" class="java.lang.String"/>
+	<field name="KASIR_TELEPON" class="java.math.BigDecimal"/>
+	<field name="KASIR_USERNAME" class="java.lang.String"/>
+	<field name="KASIR_PASSWORD" class="java.lang.String"/>
+	<field name="BARANG_ID_BARANG" class="java.lang.String"/>
+	<field name="BARANG_NAMA_BARANG" class="java.lang.String"/>
+	<field name="BARANG_HARGA" class="java.math.BigDecimal"/>
+	<field name="BARANG_STOK" class="java.math.BigDecimal"/>
+	<field name="BARANG_ID_KATEGORI" class="java.lang.String"/>
+	<field name="BARANG_ID_SATUAN" class="java.lang.String"/>
+	<field name="BARANG_DISKON" class="java.math.BigDecimal"/>
+	<field name="HASIL_DISKON" class="java.math.BigDecimal"/>
+	<field name="PELANGGAN_ID_PELANGGAN" class="java.lang.String"/>
+	<field name="PELANGGAN_NAMA_PELANGGAN" class="java.lang.String"/>
+	<field name="PELANGGAN_JENIS_KELAMIN" class="java.lang.String"/>
+	<field name="PELANGGAN_ALAMAT" class="java.lang.String"/>
+	<field name="PELANGGAN_NO_TELP" class="java.math.BigDecimal"/>
+	<field name="SATUAN_ID_SATUAN" class="java.lang.String"/>
+	<field name="SATUAN_NAMA_SATUAN" class="java.lang.String"/>
+	<group name="idJualHeader">
+		<groupExpression><![CDATA[$F{JUAL_ID_JUAL}]]></groupExpression>
+		<groupHeader>
+			<band height="190">
+				<staticText>
+					<reportElement uuid="a36b3afb-7a9c-405b-85c7-05f6ba8081c5" x="0" y="116" width="72" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[KODE JUAL]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="0c569e68-647e-4b76-9fa1-004aeacec90d" x="72" y="116" width="66" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{JUAL_ID_JUAL}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="664f0fce-fa75-4aa1-8c09-098db87be121" x="0" y="136" width="72" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[TANGGAL JUAL]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="95e9de5d-2a64-40ba-bf7b-38b90fc49774" x="72" y="136" width="102" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{JUAL_TANGGAL_JUAL}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="c579a098-88e4-4be2-a9fb-2a7bcc7ffc12" x="185" y="116" width="57" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[PELANGGAN]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="8cee6d55-eb6e-4a97-9645-1c938c46e1d2" x="242" y="116" width="68" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PELANGGAN_NAMA_PELANGGAN}]]></textFieldExpression>
+				</textField>
+				<textField pattern="yyyy.MM.dd G &apos;at&apos; HH:mm:ss z">
+					<reportElement uuid="83b5df97-6b09-4f67-950a-3654a9c51140" x="0" y="87" width="100" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="a61b99ec-48d8-4b54-a5ef-771d42bba322" x="185" y="87" width="57" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[KASIR]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="b671b6ba-a559-4fae-9c5a-5761f7d7adc3" x="242" y="87" width="68" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{KASIR_NAMA_KASIR}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="3c5ec259-b315-4fc7-964f-c78f5391382d" x="0" y="110" width="310" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineStyle="Dashed"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement uuid="b0077041-42d7-45c2-8055-9ff1e84910b8" x="0" y="0" width="310" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Calibri" size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TAMBAKBOYO - TUBAN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="af9d1213-17a1-4d96-be60-87cedde18665" x="0" y="20" width="310" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Calibri" size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CV. MINIMARKET TUGAS AKHIR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="ce45c016-f0d7-4c1d-97cb-97a9eef5d305" x="0" y="40" width="310" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Calibri" size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[JL. RAYA NO.226 TAMBAKBOYO - TUBAN]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="3c5ec259-b315-4fc7-964f-c78f5391382d" x="0" y="67" width="310" height="1"/>
+					<graphicElement>
+						<pen lineWidth="1.25" lineStyle="Double"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="3c5ec259-b315-4fc7-964f-c78f5391382d" x="-1" y="186" width="310" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineStyle="Dashed"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement uuid="7441ff47-121c-4709-9b4a-54fa57269bab" x="0" y="163" width="75" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[BARANG]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="7441ff47-121c-4709-9b4a-54fa57269bab" x="75" y="163" width="36" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[DISKON]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="7441ff47-121c-4709-9b4a-54fa57269bab" x="120" y="163" width="36" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[JUMLAH]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="3d11ff01-1a01-405c-8881-ff0d819e133e" x="165" y="163" width="38" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[HARGA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="640682f7-d901-40be-b9b3-f15dba5f3356" x="235" y="163" width="41" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[SUB TOTAL]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="137">
+				<line>
+					<reportElement uuid="3c5ec259-b315-4fc7-964f-c78f5391382d" x="0" y="3" width="303" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineStyle="Dashed"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement uuid="5f041ce0-5c2f-4bd6-87e1-217da79cd15f" x="120" y="11" width="76" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="ee729bb7-832f-4e07-9fc4-adb208ce0b26" x="235" y="11" width="68" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{JUAL_TOTAL}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="8ee23895-6ccf-4a94-9c9a-704a9183f14b" x="120" y="31" width="76" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[BAYAR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="021dccf8-abc9-463f-8e30-06c2a3405017" x="120" y="51" width="76" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[KEMBALIAN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="71348452-648f-4046-8ee5-f0c4c9285294" x="217" y="11" width="4" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="c8d94664-e546-4d4c-8337-c642d2154a97" x="217" y="31" width="4" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="44d74d7d-37ed-42fb-a81a-9a3813ea87d6" x="217" y="51" width="4" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="a34cc18b-6d52-4e69-a010-b1653fce1e3f" x="235" y="31" width="68" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{JUAL_BAYAR}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="ade97e30-9864-4ad2-b98e-ea837f074d58" x="235" y="51" width="68" height="20"/>
+					<textElement>
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{JUAL_KEMBALIAN}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="3c5ec259-b315-4fc7-964f-c78f5391382d" x="0" y="128" width="309" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineStyle="Dashed"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement uuid="fe33bde6-8b26-416f-a2db-78a2e242a9f9" x="0" y="78" width="310" height="15"/>
+					<textElement textAlignment="Center">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[PAKAILAH KARTU PELANGGAN JIKA BELANJA KE MINIMARKET TUGAS AKHIR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="ffb5b34c-afd8-438c-8537-86045ab9af6e" x="0" y="93" width="310" height="15"/>
+					<textElement textAlignment="Center">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[DAN RAIH DISKON BESAR - BESARAN DI MINIMARKET TUGAS AKHIR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="a825265d-87cb-495b-89b1-b37a8d0acd44" x="0" y="108" width="310" height="15"/>
+					<textElement textAlignment="Center">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[TERIMA KASIH ATAS KUNJUNGAN ANDA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="70634800-0d6b-46e3-aef2-83052f49493c" x="306" y="-2" width="6" height="11"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[+]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="barangHeader">
+		<groupExpression><![CDATA[$F{JUAL_DETIL_ID_BARANG}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<detail>
+		<band height="23" splitType="Immediate">
+			<textField>
+				<reportElement uuid="fe6038a2-1262-474d-815c-830d021dbbc8" x="0" y="0" width="75" height="20"/>
+				<textElement>
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BARANG_NAMA_BARANG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="77c45eab-9166-421c-ade1-7a9cbc6ce8ea" x="75" y="0" width="18" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BARANG_DISKON}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fe92af68-db4e-442a-afc1-1acf69d1c355" x="120" y="0" width="36" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{JUAL_DETIL_JUMLAH}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="31eb09ef-49a8-4f6d-b4a8-c478ebeb9225" x="93" y="0" width="18" height="20"/>
+				<textElement>
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement uuid="5ce8007b-3088-4522-816c-0e7fc7657de8" x="179" y="0" width="42" height="20"/>
+				<textElement>
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BARANG_HARGA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement uuid="a687e2ce-c518-4dc2-8386-035b58887945" x="249" y="0" width="54" height="20"/>
+				<textElement>
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SUB_TOTAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b2cd5047-c1c8-4d01-9bb8-4371556e2bbb" x="165" y="0" width="14" height="18"/>
+				<textElement>
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[Rp.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b2cd5047-c1c8-4d01-9bb8-4371556e2bbb" x="235" y="0" width="14" height="18"/>
+				<textElement>
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[Rp.]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement uuid="6941b19c-3d86-4991-a089-4ea9ad26ccf2" x="190" y="2" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="fc0a0d81-2114-454c-80be-797359ef1b99" x="270" y="2" width="40" height="20"/>
+				<textElement>
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
